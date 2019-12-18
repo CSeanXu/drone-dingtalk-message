@@ -29,6 +29,7 @@ type (
 		Status     string //  providers the current build status
 		Link       string //  providers the current build link
 		Event      string //  trigger event
+		Number     string //  drone build number
 		StartAt    int64  //  build start at ( unix timestamp )
 		FinishedAt int64  //  build finish at ( unix timestamp )
 	}
@@ -276,6 +277,7 @@ func (p *Plugin) getEnvs() map[string]interface{} {
 	envs["TPL_REPO_REMOTE_URL"] = p.Drone.Repo.RemoteURL
 
 	envs["TPL_BUILD_STATUS"] = p.getStatus()
+	envs["TPL_BUILD_NUMBER"] = p.Drone.Build.Number
 	envs["TPL_BUILD_LINK"] = p.Drone.Build.Link
 	envs["TPL_BUILD_EVENT"] = p.Drone.Build.Event
 	envs["TPL_BUILD_CONSUMING"] = fmt.Sprintf("%v", p.Drone.Build.FinishedAt-p.Drone.Build.StartAt)

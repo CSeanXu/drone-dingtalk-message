@@ -139,6 +139,11 @@ func main() {
 			EnvVar: "DRONE_BUILD_STATUS",
 		},
 		cli.StringFlag{
+			Name:   "build.number",
+			Usage:  "build number",
+			EnvVar: "DRONE_BUILD_NUMBER",
+		},
+		cli.StringFlag{
 			Name:   "build.link",
 			Usage:  "build link",
 			EnvVar: "DRONE_BUILD_LINK",
@@ -230,6 +235,7 @@ func run(c *cli.Context) {
 			//  build info
 			Build: Build{
 				Status:     c.String("build.status"),
+				Number:     c.String("build.number"),
 				Link:       c.String("build.link"),
 				Event:      c.String("build.event"),
 				StartAt:    c.Int64("build.started"),
